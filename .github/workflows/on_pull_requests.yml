@@ -34,4 +34,4 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET_BETA }}
           ENVIRONMENT: beta
         run: |
-          python process_prompt.py prompts/beta/prompt_config.json
+          python process_prompt.py prompts/beta/welcome_prompt.json
