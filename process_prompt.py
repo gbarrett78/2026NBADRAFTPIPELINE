@@ -5,7 +5,7 @@ from jinja2 import Template
 import sys
 
 # Define folders and S3 bucket from environment variables/arguments
-PROMPT_CONFIG_FILE = sys.argv[1]
+
 S3_BUCKET_NAME = os.environ['S3_BUCKET']
 AWS_REGION = os.environ['AWS_REGION']
 
@@ -25,7 +25,7 @@ def process_prompt_and_upload(config_file, bucket_name, region):
     # Invoke Bedrock
     bedrock = boto3.client(service_name='bedrock-runtime', region_name=region)
     body = json.dumps({
-        "messages": [{"role": "user", "content": [{"text": rendered_prompt}]}],
+        "messages": [{"role": "user", "content": [{"type": "text", "text": rendered_prompt}]}],
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 2000
     })
