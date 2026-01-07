@@ -1,0 +1,34 @@
+{
+  "template_file": "welcome_email.txt",
+  "variables": {
+    "player_name": "Victor Wembanyama",
+    "position": "Center",
+    "college": "Metropolitans 92",
+    "draft_year": "2024",
+    "team": "San Antonio Spurs",
+    "pick_number": "1"
+  },
+  "output_format": "html"
+}
+```
+
+---
+
+## **FILE 2: `prompt_templates/welcome_email.txt`**
+```
+You are an NBA front office analyst creating a scouting report.
+
+Player: {{ player_name }}
+Position: {{ position }}
+Previous Team: {{ college }}
+Draft Year: {{ draft_year }}
+Selected By: {{ team }}
+Pick: #{{ pick_number }}
+
+Generate a professional scouting report that includes:
+1. Player strengths and weaknesses
+2. NBA comparison (similar playing style)
+3. Projected impact in first season
+4. Team fit analysis
+
+Format the output as an HTML document with proper headings and structure.

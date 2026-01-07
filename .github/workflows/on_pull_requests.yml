@@ -1,0 +1,37 @@
+name: Beta Deployment (Pull Request)
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-to-beta:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Check out the code from the repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      # Step 3: Install Python dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      # Step 4: Run the prompt processing script (BETA mode)
+      - name: Process prompts and deploy to beta
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET_BETA }}
+          ENVIRONMENT: beta
+        run: |
+          python process_prompt.py
