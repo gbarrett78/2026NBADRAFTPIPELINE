@@ -34,4 +34,4 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET_PROD }}
           ENVIRONMENT: prod
         run: |
-          python process_prompt.py prompts/prod/welcome_prompt.json
+          python process_prompt.py prompts/welcome_prompt.json
